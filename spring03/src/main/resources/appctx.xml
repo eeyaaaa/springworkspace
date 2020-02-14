@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:annotation-config/>
+	<bean id="memberDao" class="spring.MemberDao"/>	
+	
+	<bean id="memberRegSvc" class="spring.MemberRegisterService"/>
+	
+	<bean id="changePwdSvc" class="spring.ChangePasswordService"/>
+	
+	<bean id="memberPrinter1" class="spring.MemberPrinter">
+		<qualifier value="sysout"/>
+		<!-- 자동주입을 어떤 객체로 할것인지 정해주는것 -->
+	</bean>
+	<bean id="memberPrinter2" class="spring.MemberPrinter"/>
+	
+	<bean id="listPrinter" class="spring.MemberListPrinter"/>
+	
+	<bean id="infoPrinter" class="spring.MemberInfoPrinter"/>
+
+	<bean id="versionPrinter" class="spring.VersionPrinter"/>
+
+</beans>

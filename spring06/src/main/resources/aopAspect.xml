@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+		<!-- @Aspect 어노테이션을 사용하여 사용하는경우 추가 -->
+		<!-- proxy-target-class="true"를 추가하게되면 
+			  프록시 객체 생성시 Bean객체가 상속받은 인터테이스 타입이 아닌 
+			  해당 Bean객체의 타입으로 프록시 객체를 생성하게된다   -->
+		<aop:aspectj-autoproxy proxy-target-class="true"/>
+		
+		<bean id="exeTimeAspect2" class="aspect.ExeTimeAspect2"></bean>		
+		<bean id ="implCal" class="chap06.ImplCalculator"></bean>
+		<bean id ="recCal" class="chap06.RecCalculator"></bean>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+		<!-- 공통 기능을 제공할 클래스 Bean목록으로 등록 -->
+		<bean id="exeTimeAspect" class="aspect.ExeTimeAspect"></bean>
+		
+		<!-- Aspect 설정 : Advice를 Pointcut에 적용할 것인지 설정 -->	
+		<!-- proxy-target-class="true"를 추가하게되면 
+			  프록시 객체 생성시 Bean객체가 상속받은 인터테이스 타입이 아닌 
+			  해당 Bean객체의 타입으로 프록시 객체를 생성하게된다  -->
+		<aop:config proxy-target-class="true">
+			<aop:aspect id="measureAspect" ref="exeTimeAspect">
+				<aop:pointcut  id="publicMethod"
+					expression="execution(public * chap06..*(..))"/>
+				<aop:around pointcut-ref="publicMethod" method="measure"/>
+			</aop:aspect>
+		</aop:config>
+		
+		<bean id ="implCal" class="chap06.ImplCalculator"></bean>
+		<bean id ="recCal" class="chap06.RecCalculator"></bean>
+</beans>
