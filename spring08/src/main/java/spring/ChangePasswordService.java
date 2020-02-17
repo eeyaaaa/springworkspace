@@ -34,18 +34,20 @@ public class ChangePasswordService {
 		oldPwd = eop.toString();
 		
 		//사용자가 입력한 새로운 비밀번호를 해싱
-		StringBuffer encryptPassword = new StringBuffer();
+//		StringBuffer encryptPassword = new StringBuffer();
+//		
+//		String newSalt = Sha256Util.genSalt();
+//		
+//		encryptPassword.append(Sha256Util.getEncrypt(newPwd, newSalt));
+//		encryptPassword.append("\\$").append(newSalt);
+//		newPwd = encryptPassword.toString();
+//		System.out.println(encryptPassword.toString());
+//		
+//		System.out.println("기존비밀번호(db) :" + member.getPassword());
+//		System.out.println("기존비밀번호 (u): " + oldPwd);
+//		System.out.println("");
 		
-		String newSalt = Sha256Util.genSalt();
-		
-		encryptPassword.append(Sha256Util.getEncrypt(newPwd, newSalt));
-		encryptPassword.append("\\$").append(newSalt);
-		newPwd = encryptPassword.toString();
-		System.out.println(encryptPassword.toString());
-		
-		System.out.println("기존비밀번호(db) :" + member.getPassword());
-		System.out.println("기존비밀번호 (u): " + oldPwd);
-		System.out.println("");
+		newPwd = encoder.encode(newPwd);
 		
 		
 		member.changePassword(oldPwd,  newPwd);
