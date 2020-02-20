@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:annotation-driven /> <!-- @Controller 어노테이션을 읽을수 있게하는 선언 -->
+
+	<mvc:default-servlet-handler /> <!-- 최상위 요청에대한 받아들일수 있는 선언 -->
+
+		<!-- url패턴을 읽어들여 view를 해석해주는 경로앞에 /WEB-INF/view/을 붙히라는 선언 
+		전달받은 view에 .jsp를 붙히게 된다. mvc:jsp가 있기때문.
+		<propety name="suffix">
+		<value>.jsp</value> 와 같은 설정. -->
+	<mvc:view-resolvers> 
+		<mvc:jsp prefix="/WEB-INF/view/" />
+			
+	</mvc:view-resolvers>
+	
+	<!-- 메세지 파일을 읽어오기위해서는 id를 messageSource로 반드시 지정 
+		 여러 설정 파일을 등록할 경우 <value>를 추가하면됨 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message.label</value> <!-- message/label.properties를 읽어온다는 의미 -->
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
+		</bean>
+		
+
+</beans>

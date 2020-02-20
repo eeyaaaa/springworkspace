@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 마이바티스 작동 규칙 정의 ->name은 설정종류 -->
+	<settings>
+		<setting name="cacheEnabled" value="false" /> <!-- 각 매퍼에 설정된 캐시를 전역적으로 사용할지 여부 -->
+		<setting name="useGeneratedKeys" value="false" /> <!--생성키에 대한 JBDC지원을 허용 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="boardVO" type="board.domain.BoardVO" />
+	</typeAliases>
+</configuration>
